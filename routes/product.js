@@ -72,14 +72,27 @@ router.get("/find/:id", async (req,res)=>{
     }
 })
 
+router.get('/search', async(req,res)=>{
+    
+    
+    try {
+        const titleStr = req.query.title
+        console.log("req.query: ",titleStr)
+        const regex = new RegExp(titleStr, 'i') // i for case insensitive
+
+        const product = await Product.find({title:{ $regex: regex}});
+        console.log("search product:", product)
+        res.status(200).json(product);
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
 
 //get all products
 router.get("/", async (req,res)=>{
     const qNew = req.query.new;
     const qCategory = req.query.category;
-
-    
-
     try {
         let products;
 
