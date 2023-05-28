@@ -5,6 +5,10 @@
   "scripts": {
     "start": "nodemon index.js"
   },
+  "engines": {
+
+    "node": ">=16.19.0"
+  },
   "author": "",
   "license": "ISC",
   "description": "",
